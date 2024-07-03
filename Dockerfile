@@ -24,14 +24,13 @@ RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar 
 RUN cd /app && \
     /usr/local/bin/composer install 
 
-#RUN php artisan storage:link
-
 RUN chown -R www-data: /app
 
-#CMD php artisan voyager:install
+CMD php artisan voyager:controllers
 
 CMD cd /app/public
 CMD rm storage
 CMD php artisan storage:link
+
 
 CMD sh /app/docker/startup.sh

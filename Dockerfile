@@ -26,14 +26,8 @@ RUN cd /app && \
 
 RUN chown -R www-data: /app
 
+CMD cd /app && php artisan storage:link
 
-
-CMD cd /app/public
-CMD rm storage
-CMD cd ..
-
-CMD php artisan storage:link
-
-CMD php artisan voyager:controllers
+CMD cd /app && php artisan voyager:controllers
 
 CMD sh /app/docker/startup.sh

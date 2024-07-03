@@ -28,8 +28,12 @@ RUN cd /app && \
 
 RUN chown -R www-data: /app
 
-CMD cd public
+
+CMD cd /app/public
 CMD rm storage
 CMD php artisan storage:link
+
+CMD sudo chmod 755 -R /app
+CMD chmod -R o+w app/storage
 
 CMD sh /app/docker/startup.sh

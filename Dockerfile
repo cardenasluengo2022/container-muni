@@ -28,7 +28,7 @@ RUN cd /app && \
 
 RUN chown -R www-data: /app
 
-CMD php artisan voyager:install
+#CMD php artisan voyager:install
 
 CMD cd /app/public
 CMD rm storage
@@ -37,6 +37,6 @@ CMD php artisan storage:link
 CMD sudo chmod 755 -R /app
 CMD chmod -R o+w app/storage
 
-CMD artisan vendor:publish
+CMD php artisan vendor:publish --provider="TCG\Voyager\VoyagerServiceProvider" --force
 
 CMD sh /app/docker/startup.sh

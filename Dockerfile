@@ -34,11 +34,4 @@ CMD cd /app/public
 CMD rm storage
 CMD php artisan storage:link
 
-CMD sudo chmod 755 -R /app
-CMD chmod -R o+w app/storage
-
-CMD php artisan vendor:publish --provider="TCG\Voyager\VoyagerServiceProvider" --force
-
-CMD php artisan optimize:clear
-
 CMD sh /app/docker/startup.sh

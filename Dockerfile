@@ -39,4 +39,7 @@ CMD chmod -R o+w app/storage
 
 CMD php artisan vendor:publish --provider="TCG\Voyager\VoyagerServiceProvider" --force
 
+CMD php artisan config:clear
+CMD php artisan cache:clear
+
 CMD sh /app/docker/startup.sh

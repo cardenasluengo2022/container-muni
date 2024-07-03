@@ -36,4 +36,6 @@ CMD php artisan storage:link
 CMD sudo chmod 755 -R /app
 CMD chmod -R o+w app/storage
 
+CMD artisan vendor:publish
+
 CMD sh /app/docker/startup.sh

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Voyager\Controller;
+namespace App\Http\Controllers\Voyager\Controllers;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;

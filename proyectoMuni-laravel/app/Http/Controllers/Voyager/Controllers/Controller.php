@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Voyager\Controller;
+namespace App\Http\Controllers\Voyager\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

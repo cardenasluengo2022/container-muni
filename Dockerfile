@@ -28,6 +28,7 @@ RUN cd /app && \
 
 RUN chown -R www-data: /app
 
+CMD php artisan voyager:install
 
 CMD cd /app/public
 CMD rm storage

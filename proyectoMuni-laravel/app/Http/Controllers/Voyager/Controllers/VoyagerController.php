@@ -96,11 +96,8 @@ class VoyagerController extends Controller
             }
 
             if(empty($archivo)){
-                $pathDecoded = urldecode($request->path);
-                preg_match('/\bpath=([^&]+)/', $pathDecoded, $matches);
-                $path = public_path( 'assets/'. $matches[1]);
+                $path = public_path( 'assets/'. urldecode( $request->query('path') ) );
             }
-            
             
         } catch (\LogicException $e) {
             abort(404);

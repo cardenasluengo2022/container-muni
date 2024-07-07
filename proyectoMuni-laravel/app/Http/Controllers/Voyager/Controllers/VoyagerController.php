@@ -87,13 +87,20 @@ class VoyagerController extends Controller
             if (class_exists(\League\Flysystem\Util::class)) {
                 // Flysystem 1.x
                 $path = public_path('assets/'.\League\Flysystem\Util::normalizeRelativePath(urldecode($request->path)) );
-                $archivo = '/assets/'.\League\Flysystem\Util::normalizeRelativePath(urldecode($request->path));
+                $archivo = \League\Flysystem\Util::normalizeRelativePath(urldecode($request->path));
             } elseif (class_exists(\League\Flysystem\WhitespacePathNormalizer::class)) {
                 // Flysystem >= 2.x
                 $normalizer = new \League\Flysystem\WhitespacePathNormalizer();
                 $path = public_path( 'assets/'. $normalizer->normalizePath(urldecode($request->path)) );
-                $archivo = '/assets/'.$normalizer->normalizePath(urldecode($request->path));
+                $archivo = $normalizer->normalizePath(urldecode($request->path));
             }
+
+            if(empty($archivo)){
+                $pathDecoded = urldecode($request->path);
+                preg_match('/\bpath=([^&]+)/', $pathDecoded, $matches);
+                $path = public_path( 'assets/'. $matches[1]);
+            }
+            
             
         } catch (\LogicException $e) {
             abort(404);
@@ -148,7 +155,7 @@ class VoyagerController extends Controller
 
 
         $n = new \League\Flysystem\WhitespacePathNormalizer();
-        $path33 = public_path( 'assets/'. $n->normalizePath(urldecode($request->path)) );
+        $path33 =  $n->normalizePath(urldecode($request->path)) ;
         $info .= "\n \n" .$path33;
         $ar = '/assets/'.$n->normalizePath(urldecode($request->path));
         $info .= "\n \n" .$ar;

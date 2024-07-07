@@ -81,7 +81,7 @@ class VoyagerController extends Controller
 
     public function assets(Request $request)
     {
-        
+        dd($request);
         $archivo = '';
         try {
             if (class_exists(\League\Flysystem\Util::class)) {

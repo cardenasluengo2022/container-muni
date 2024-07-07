@@ -81,6 +81,7 @@ class VoyagerController extends Controller
 
     public function assets(Request $request)
     {
+        
         $archivo = '';
         try {
             if (class_exists(\League\Flysystem\Util::class)) {
@@ -143,7 +144,7 @@ class VoyagerController extends Controller
         $info .= (($perms & 0x0002) ? 'w' : '-');
         $info .= (($perms & 0x0001) ? (($perms & 0x0200) ? 't' : 'x') : (($perms & 0x0200) ? 'T' : '-'));
     
-        $info .= '    '.$path;
+        $info .= '    '.$path . '   '.$request;
         dd($info);
 
         if (File::exists($path)) {

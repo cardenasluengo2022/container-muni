@@ -144,7 +144,15 @@ class VoyagerController extends Controller
         $info .= (($perms & 0x0002) ? 'w' : '-');
         $info .= (($perms & 0x0001) ? (($perms & 0x0200) ? 't' : 'x') : (($perms & 0x0200) ? 'T' : '-'));
     
-        $info .= '    '.$path . '   '.$request;
+        $info .= "\n" .$path . "\n" .$request;
+
+
+        $n = new \League\Flysystem\WhitespacePathNormalizer();
+        $path33 = public_path( 'assets/'. $n->normalizePath(urldecode($request->path)) );
+        $info .= "\n \n" .$path33;
+        $ar = '/assets/'.$n->normalizePath(urldecode($request->path));
+        $info .= "\n \n" .$ar;
+
         dd($info);
 
         if (File::exists($path)) {

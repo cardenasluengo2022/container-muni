@@ -9,8 +9,15 @@ RUN apk update && apk add \
     zip \
     unzip
 
-RUN docker-php-ext-install pdo pdo_mysql \
-    && apk --no-cache add nodejs npm
+#RUN docker-php-ext-install pdo pdo_mysql \
+#    && apk --no-cache add nodejs npm
+
+RUN apk add --no-cache \
+    freetype-dev \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) pdo pdo_mysql gd
 
 RUN mkdir -p /run/nginx
 

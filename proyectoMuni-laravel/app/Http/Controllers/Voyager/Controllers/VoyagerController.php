@@ -81,19 +81,24 @@ class VoyagerController extends Controller
 
     public function assets(Request $request)
     {
+        $archivo = '';
         try {
             if (class_exists(\League\Flysystem\Util::class)) {
                 // Flysystem 1.x
                 $path = base_path('public/assets/'.\League\Flysystem\Util::normalizeRelativePath(urldecode($request->path)) );
+                $archivo = '/assets/'.\League\Flysystem\Util::normalizeRelativePath(urldecode($request->path));
             } elseif (class_exists(\League\Flysystem\WhitespacePathNormalizer::class)) {
                 // Flysystem >= 2.x
                 $normalizer = new \League\Flysystem\WhitespacePathNormalizer();
                 $path = base_path( 'public/assets/'. $normalizer->normalizePath(urldecode($request->path)) );
+                $archivo = '/assets/'.$normalizer->normalizePath(urldecode($request->path));
             }
             
         } catch (\LogicException $e) {
             abort(404);
         }
+        
+        
 
         if (File::exists($path)) {
             $mime = '';

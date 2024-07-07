@@ -81,7 +81,6 @@ class VoyagerController extends Controller
 
     public function assets(Request $request)
     {
-        dd($request->all());
         $archivo = '';
         try {
             if (class_exists(\League\Flysystem\Util::class)) {
@@ -103,62 +102,6 @@ class VoyagerController extends Controller
             abort(404);
         }
        
-        $perms = fileperms($path);
-        $info = '';
-
-        if (($perms & 0xC000) == 0xC000) {
-            // Socket
-            $info = 's';
-        } elseif (($perms & 0xA000) == 0xA000) {
-            // Enlace simbólico
-            $info = 'l';
-        } elseif (($perms & 0x8000) == 0x8000) {
-            // Archivo regular
-            $info = '-';
-        } elseif (($perms & 0x6000) == 0x6000) {
-            // Archivo especial de bloque
-            $info = 'b';
-        } elseif (($perms & 0x4000) == 0x4000) {
-            // Directorio
-            $info = 'd';
-        } elseif (($perms & 0x2000) == 0x2000) {
-            // Archivo especial de caracteres
-            $info = 'c';
-        } elseif (($perms & 0x1000) == 0x1000) {
-            // Tubería FIFO
-            $info = 'p';
-        } else {
-            // Desconocido
-            $info = 'u';
-        }
-    
-        
-        // Propietario
-        $info .= (($perms & 0x0100) ? 'r' : '-');
-        $info .= (($perms & 0x0080) ? 'w' : '-');
-        $info .= (($perms & 0x0040) ? (($perms & 0x0800) ? 's' : 'x') : (($perms & 0x0800) ? 'S' : '-'));
-    
-        // Grupo
-        $info .= (($perms & 0x0020) ? 'r' : '-');
-        $info .= (($perms & 0x0010) ? 'w' : '-');
-        $info .= (($perms & 0x0008) ? (($perms & 0x0400) ? 's' : 'x') : (($perms & 0x0400) ? 'S' : '-'));
-    
-        // Mundo
-        $info .= (($perms & 0x0004) ? 'r' : '-');
-        $info .= (($perms & 0x0002) ? 'w' : '-');
-        $info .= (($perms & 0x0001) ? (($perms & 0x0200) ? 't' : 'x') : (($perms & 0x0200) ? 'T' : '-'));
-    
-        $info .= "\n" .$path . "\n" .$request;
-
-
-        $n = new \League\Flysystem\WhitespacePathNormalizer();
-        $path33 =  $n->normalizePath(urldecode($request->path)) ;
-        $info .= "\n \n" .$path33;
-        $ar = '/assets/'.$n->normalizePath(urldecode($request->path));
-        $info .= "\n \n" .$ar;
-
-        dd($info);
-
         if (File::exists($path)) {
             $mime = '';
             if (Str::endsWith($path, '.js')) {

@@ -99,7 +99,7 @@ class VoyagerController extends Controller
         }
        
         $perms = fileperms($path);
-        $info = ''.$path.'    .   ';
+        $info = '';
 
         if (($perms & 0xC000) == 0xC000) {
             // Socket
@@ -127,6 +127,7 @@ class VoyagerController extends Controller
             $info = 'u';
         }
     
+        
         // Propietario
         $info .= (($perms & 0x0100) ? 'r' : '-');
         $info .= (($perms & 0x0080) ? 'w' : '-');
@@ -142,6 +143,7 @@ class VoyagerController extends Controller
         $info .= (($perms & 0x0002) ? 'w' : '-');
         $info .= (($perms & 0x0001) ? (($perms & 0x0200) ? 't' : 'x') : (($perms & 0x0200) ? 'T' : '-'));
     
+        $info .= '    '.$path;
         dd($info);
 
         if (File::exists($path)) {

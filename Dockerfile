@@ -28,6 +28,6 @@ RUN chown -R www-data: /app
 
 RUN cd /app && php artisan storage:link
 
-CMD cd /app && php artisan voyager:controllers
+RUN cd /app && php artisan voyager:controllers
 
 CMD sh /app/docker/startup.sh

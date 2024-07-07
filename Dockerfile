@@ -26,7 +26,7 @@ RUN cd /app && \
 
 RUN chown -R www-data: /app
 
-CMD cd /app && php artisan storage:link
+RUN cd /app && php artisan storage:link
 
 CMD cd /app && php artisan voyager:controllers
 

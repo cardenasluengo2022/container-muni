@@ -99,7 +99,7 @@ class VoyagerController extends Controller
         }
        
         $perms = fileperms($path);
-        $info = '';
+        $info = ''.$path.'    .   ';
 
         if (($perms & 0xC000) == 0xC000) {
             // Socket

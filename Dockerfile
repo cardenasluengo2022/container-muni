@@ -30,4 +30,10 @@ RUN cd /app && php artisan storage:link
 
 RUN cd /app && php artisan voyager:controllers
 
+RUN php artisan view:clear
+RUN php artisan config:clear
+RUN php artisan route:clear
+RUN php artisan cache:clear
+
+
 CMD sh /app/docker/startup.sh

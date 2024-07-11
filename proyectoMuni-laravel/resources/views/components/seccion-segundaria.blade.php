@@ -1,10 +1,9 @@
 <div class="container">
-
   @foreach ($portadas2 as $i => $p)
   <div class="row" style="margin-bottom: 50px">
 
     <div class="col-lg-6 @if ($i % 2)order-last @endif" >
-      <img src="{{ asset('storage/'.$p->imagen ) }}" alt="" class="img-fluid">
+      <img src="{{ Storage::disk('gcs')->url($p->imagen ) }}" alt="" class="img-fluid">
     </div>
 
     <div class="col-lg-6 pt-4 pt-lg-0 content @if ($i % 2)order-first @endif">

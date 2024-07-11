@@ -27,7 +27,7 @@
               <div class="col-lg-4 col-md-6 align-items-stretch">
                 <a href="/personajesHistoricos/{{$p->slug}}">
                   <div class="member">
-                    <img src="{{asset('storage/'.$p->foto_perfil)}}" alt="">
+                    <img src="{{ Storage::disk('gcs')->url($p->foto_perfil)}}" alt="">
                     <h4>{{$p->nombre}}</h4>
                     <span>{{$p->titulo}}</span>
                   </div>

@@ -36,7 +36,7 @@
             <article class="entry entry-single">
 
               <div class="entry-img">
-                <img src="{{asset('storage/'.$direccion->imagen_portada)}}" alt="" class="img-fluid">
+                <img src="{{ Storage::disk('gcs')->url($direccion->imagen_portada)}}" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -65,7 +65,7 @@
 
             <!-- Contacto -->
             <div class="blog-author d-flex align-items-center">
-              <img src="{{asset('storage/'.$direccion->imagen_perfil)}}" class="rounded-circle float-left" alt="">
+              <img src="{{ Storage::disk('gcs')->url($direccion->imagen_perfil)}}" class="rounded-circle float-left" alt="">
               <div>
                 <h4>Director: {{$direccion->director}}</h4>
                 <div class="social-links">

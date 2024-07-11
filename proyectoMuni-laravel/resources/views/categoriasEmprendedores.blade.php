@@ -22,7 +22,7 @@
                     <div class="col-lg-4 col-md-6 align-items-stretch">
                       <a href="/emprendedores/{{$c->slug}}">
                         <div class="member">
-                          <img src="{{asset('storage/'.$c->imagen)}}" alt="">
+                          <img src="{{Storage::disk('gcs')->url($c->imagen)}}" alt="">
                           <h4>{{$c->titulo}}</h4>
                           <span>{{$c->subtitulo}}</span>
                         </div>

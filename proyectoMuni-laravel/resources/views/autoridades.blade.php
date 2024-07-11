@@ -27,7 +27,7 @@
                           @endif>
                           <div class="member">
                               <a href="/autoridad/{{$a->slug}}">
-                                  <img src="{{asset('storage/'.$a->imagen_perfil)}}" alt="{{$a->nombre}}" class="img-fluid">
+                                  <img src="{{ Storage::disk('gcs')->url($a->imagen_perfil) }}" alt="{{$a->nombre}}" class="img-fluid">
                                   <h4>{{$a->nombre}}</h4>
                                   <span>{{$a->tipo_autoridad}}</span>
                               </a>

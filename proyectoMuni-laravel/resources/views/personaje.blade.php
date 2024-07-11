@@ -28,7 +28,7 @@
 
                     <div class="entry-img">
                         <?php $images = json_decode($personaje->imagenes); ?>
-                        <img src="{{asset('storage/'.$images[0])}}" alt="" class="img-fluid">
+                        <img src="{{ Storage::disk('gcs')->url($images[0])}}" alt="" class="img-fluid">
                     </div>
 
                     <h2 class="entry-title">

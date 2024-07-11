@@ -29,7 +29,7 @@
                   <a href="/complejo/{{$c->slug}}">
                     <div class="member">
                       <?php $images = json_decode($c->imagen_principal); ?>
-                        <img src="{{asset('storage/'.$images[0])}}" alt="">
+                        <img src="{{ Storage::disk('gcs')->url($images[0])}}" alt="">
                       <h4>{{$c->nombre}}</h4>
                       <span>{{$c->titulo}}</span>
                     </div>

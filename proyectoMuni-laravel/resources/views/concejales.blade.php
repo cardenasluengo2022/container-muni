@@ -26,7 +26,7 @@
               <div class="col-lg-4 col-md-6 align-items-stretch">
                 <a href="/concejales/{{$c->slug}}">
                   <div class="member">
-                    <img src="{{asset('storage/'.$c->imagen_perfil)}}" alt="">
+                    <img src="{{ Storage::disk('gcs')->url($c->imagen_perfil)}}" alt="">
                     <h4>{{$c->nombre}}</h4>
                   </div>
                 </a>

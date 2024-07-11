@@ -260,11 +260,7 @@ class VoyagerMediaController extends Controller
 
             
             $file = $request->file->storeAs($request->upload_path, $name.'.'.$extension, $this->filesystem);
-            //imagen
 
-            dd($file);
-
-            
             $file = preg_replace('#/+#', '/', $file);
            
 
@@ -338,7 +334,6 @@ class VoyagerMediaController extends Controller
 
             $success = true;
             $message = __('voyager::media.success_uploaded_file');
-            dd("El archivo es ........      ".$file);
             $path = preg_replace('/^public\//', '', $file);
 
             event(new MediaFileAdded($path));

@@ -10,12 +10,9 @@
 
         <div class="carousel-inner" role="listbox">
                 <!-- Slide 1 -->
-          @php
-            $disk = Storage::disk('gcs');
-          @endphp
           @foreach ($portadas as $p)
             <div @if ($p->titular != "" || $p->subtitulo != "") class="carousel-item active" @else class="carousel-item sinDatos active" @endif 
-              style="background-image: url({{ $disk->url($p->imagen )  }})">
+              style="background-image: url({{ Storage::disk('gcs')->url($p->imagen )  }})">
               <div class="carousel-container">
                 <div class="carousel-content">
 

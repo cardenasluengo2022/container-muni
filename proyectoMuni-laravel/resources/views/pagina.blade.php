@@ -23,7 +23,8 @@
                 <article class="entry entry-single">
 
                     <div class="entry-img">
-                        <img src="{{asset('img/muni/primera_catedral.jpg')}}" alt="" class="img-fluid">
+                        <?php $images = json_decode($pagina->imagenes); ?>
+                        <img src="{{ Storage::disk('gcs')->url($images[0]) }}" alt="" class="img-fluid">
                     </div>
 
                     <h2 class="entry-title">

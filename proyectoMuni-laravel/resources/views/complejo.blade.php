@@ -33,7 +33,7 @@
                 <article class="entry entry-single">
                     <div class="entry-img">
                         <?php $images = json_decode($complejo->imagenes); ?>
-                        <img src="{{asset('storage/'.$images[0])}}" alt="" class="img-fluid">
+                        <img src="{{ Storage::disk('gcs')->url($images[0])}}" alt="" class="img-fluid">
                     </div>
                     <h2 class="entry-title">
                       <a href="#"> {{$complejo->titulo}}<br /> </a>
@@ -58,7 +58,7 @@
                 <!-- Contacto -->
                 <div class="blog-author d-flex align-items-center">
                   <?php $images = json_decode($complejo->imagen_principal); ?>
-                  <img src="{{asset('storage/'.$images[0])}}" class="rounded-circle float-left" alt="">
+                  <img src="{{ Storage::disk('gcs')->url($images[0])}}" class="rounded-circle float-left" alt="">
                   <div>
                     <h4>Contacto:</h4>
                     <div class="social-links">

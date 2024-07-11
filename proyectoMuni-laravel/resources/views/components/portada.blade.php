@@ -10,10 +10,9 @@
 
         <div class="carousel-inner" role="listbox">
                 <!-- Slide 1 -->
-
           @foreach ($portadas as $p)
             <div @if ($p->titular != "" || $p->subtitulo != "") class="carousel-item active" @else class="carousel-item sinDatos active" @endif 
-              style="background-image: url({{ asset('storage/'.$p->imagen )  }})">
+              style="background-image: url({{ Storage::disk('gcs')->url($p->imagen )  }})">
               <div class="carousel-container">
                 <div class="carousel-content">
 

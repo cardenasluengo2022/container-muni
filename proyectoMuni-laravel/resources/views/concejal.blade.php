@@ -24,7 +24,7 @@
             <article class="entry entry-single">
 
               <div class="entry-img">
-                <img src="{{asset('storage/'.$concejal->imagen_portada)}}" alt="" class="img-fluid">
+                <img src="{{ Storage::disk('gcs')->url($concejal->imagen_portada)}}" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">

@@ -26,7 +26,7 @@
               <div class="col-lg-4 col-md-6 align-items-stretch">
                 <a href="/direccion/{{$d->slug}}">
                   <div class="member">
-                    <img src="{{asset('storage/'.$d->imagen_perfil)}}" alt="">
+                    <img src="{{ Storage::disk('gcs')->url($d->imagen_perfil)}}" alt="">
                     <h4>{{$d->nombre}}</h4>
                     <span>{{$d->director}}</span>
                   </div>

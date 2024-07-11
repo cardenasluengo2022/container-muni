@@ -232,7 +232,8 @@ class VoyagerMediaController extends Controller
         $absolute_path = Storage::disk($this->filesystem)->path($request->upload_path);
 
         try {
-            $realPath = Storage::disk($this->filesystem)->path('/');
+            $realPath = Storage::disk($this->filesystem)->url('/'); 
+           
 
             $allowedMimeTypes = config('voyager.media.allowed_mimetypes', '*');
             if ($allowedMimeTypes != '*' && (is_array($allowedMimeTypes) && !in_array($request->file->getMimeType(), $allowedMimeTypes))) {
@@ -240,7 +241,7 @@ class VoyagerMediaController extends Controller
             }
 
             if (!$request->has('filename') || $request->get('filename') == 'null') {
-                while (Storage::disk($this->filesystem)->exists(Str::finish($request->upload_path, '/').$name.'.'.$extension, $this->filesystem)) {
+                while (Storage::disk($this->filesystem)->exists(Str::finish($request->upload_path, '/').$name.'.'.$extension)) {
                     $name = get_file_name($name);
                 }
             } else {
@@ -257,8 +258,15 @@ class VoyagerMediaController extends Controller
                 }
             }
 
+            
             $file = $request->file->storeAs($request->upload_path, $name.'.'.$extension, $this->filesystem);
+            //imagen
+
+            dd($file);
+
+            
             $file = preg_replace('#/+#', '/', $file);
+           
 
             $imageMimeTypes = [
                 'image/jpeg',
@@ -330,6 +338,7 @@ class VoyagerMediaController extends Controller
 
             $success = true;
             $message = __('voyager::media.success_uploaded_file');
+            dd("El archivo es ........      ".$file);
             $path = preg_replace('/^public\//', '', $file);
 
             event(new MediaFileAdded($path));

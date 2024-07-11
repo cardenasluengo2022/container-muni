@@ -256,7 +256,7 @@
 
 @section('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://maps.google.com/maps/api/js?key=AIzaSyCKqh1B3F0Y2w8z_epvChxtviZG2NcqlDg&libraries=places"></script>
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyChpvJwDx9KHsT5i1ReI_ZgFzEUAF5KhII&libraries=places"></script>
 @if (isset($pagPrincipal) && $pagPrincipal->alerta_chek == 1)
 <script>
 
